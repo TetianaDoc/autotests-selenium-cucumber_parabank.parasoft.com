@@ -3,8 +3,11 @@ package com.gmail.doctatyana1.web_auto_tests.core;
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -52,12 +55,24 @@ public final class WebDriverProvider {
     }
   }
 
+  private static boolean isHeadless() {
+    return Boolean.parseBoolean(System.getProperty("qa.headless"));
+  }
+
   private static RemoteWebDriver startChrome() {
-    return new ChromeDriver();
+    ChromeOptions options = new ChromeOptions();
+    if (isHeadless()) {
+      options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--window-size=1920,1080");
+    }
+    return new ChromeDriver(options);
   }
 
   private static RemoteWebDriver startEdge() {
-    return new EdgeDriver();
+    EdgeOptions options = new EdgeOptions();
+    if (isHeadless()) {
+      options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--window-size=1920,1080");
+    }
+    return new EdgeDriver(options);
   }
 
   private static RemoteWebDriver startInternetExplore() {
@@ -65,7 +80,11 @@ public final class WebDriverProvider {
   }
 
   private static RemoteWebDriver startFirefox() {
-    return new FirefoxDriver();
+    FirefoxOptions options = new FirefoxOptions();
+    if (isHeadless()) {
+      options.addArguments("-headless", "--width=1920", "--height=1080");
+    }
+    return new FirefoxDriver(options);
   }
 
   private static RemoteWebDriver startSafari() {

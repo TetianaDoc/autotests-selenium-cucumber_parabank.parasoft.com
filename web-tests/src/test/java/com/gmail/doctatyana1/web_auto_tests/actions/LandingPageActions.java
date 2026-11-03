@@ -29,6 +29,22 @@ public final class LandingPageActions extends BaseLandingPageActions implements 
         page.getUsernameInput().sendKeys(username);
         page.getPasswordInput().sendKeys(password);
         page.getLogInButton().click();
+        if (page.getDriver().getCurrentUrl().contains("login.htm")) {
+            page.getSignUpLink().click();
+            page.getFirstNameInput().sendKeys("Monika");
+            page.getLastNameInput().sendKeys("Brown");
+            page.getAddressStreetInput().sendKeys("Str.15");
+            page.getAddressCityInput().sendKeys("New York");
+            page.getAddressStateInput().sendKeys("Ohio");
+            page.getAddressZipCodeInput().sendKeys("12345");
+            page.getPhoneNumberInput().sendKeys("987654");
+            page.getDriver().findElement(By.id("customer.ssn")).sendKeys("222222");
+            page.getDriver().findElement(By.id("customer.username")).sendKeys(username);
+            page.getDriver().findElement(By.id("customer.password")).sendKeys(password);
+            page.getDriver().findElement(By.id("repeatedPassword")).sendKeys(password);
+            page.getDriver().findElement(By.cssSelector("input[value='Register']")).click();
+            page.getAccountsOverviewLink().click();
+        }
     }
 
     public void openAboutUsPage() {
