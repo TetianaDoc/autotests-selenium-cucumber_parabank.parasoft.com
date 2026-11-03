@@ -131,7 +131,7 @@ Example:
 ```
 
 ### Continuous Integration (GitHub Actions)
-A GitHub Actions workflow (`.github/workflows/ci.yml`) is configured to run automatically on every `push` and `pull_request` to `master` (as well as manual `workflow_dispatch`). It sets up JDK 21 and Firefox on `ubuntu-latest`, executes `./gradlew test sonarlintMain sonarlintTest -Dqa.browser=FIREFOX -Dqa.env=PROD -Dqa.headless=true`, and uploads the Gradle test reports as build artifacts.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) is configured to run automatically on every `push` and `pull_request` to `master` (as well as manual `workflow_dispatch`). It sets up JDK 21 and Firefox on `ubuntu-24.04`, executes `./gradlew test sonarlintMain sonarlintTest -Dqa.browser=FIREFOX -Dqa.env=PROD -Dqa.headless=true`, and uploads the Gradle test reports as build artifacts.
 
 ### YAML Test Data
 Test data is stored under `web-tests/src/test/resources/test-data/` and mapped by environment (`PROD`, `UAT`, `STAGE`, `DEV`) to POJOs in `com.gmail.doctatyana1.web_auto_tests.model`:
