@@ -6,7 +6,6 @@ import com.gmail.doctatyana1.web_auto_tests.actions.ServicesPageActions;
 import com.gmail.doctatyana1.web_auto_tests.pages.LandingPage;
 import com.gmail.doctatyana1.web_auto_tests.model.SignInTestData;
 import com.gmail.doctatyana1.web_auto_tests.model.SignInTestData.SignInTestDataByEnv;
-import io.cucumber.java.en.Then;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
@@ -46,6 +45,7 @@ class LandingPageTest extends BaseTest {
 
     @Test
     @Order(1)
+    @SuppressWarnings("java:S5961")
     void shouldProperDisplayAllElementsOnLandingPage() {
         // Act
 
