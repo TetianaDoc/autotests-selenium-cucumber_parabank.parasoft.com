@@ -118,16 +118,20 @@ autotests-selenium-cucumber/
 
 ## Configuration Guide
 
-### Browser & Environment Selection
+### Browser, Environment & Headless Mode Selection
 By default, tests run on **`FIREFOX`** against the **`PROD`** environment (`https://parabank.parasoft.com/`), as defined in `BaseTest`. You can override these via JVM system properties:
 
 - `-Dqa.browser=<CHROME|FIREFOX|EDGE|SAFARI|IE>`
 - `-Dqa.env=<PROD|UAT|STAGE|DEV>`
+- `-Dqa.headless=<true|false>` (runs `CHROME`, `FIREFOX`, or `EDGE` in headless mode)
 
 Example:
 ```bash
-./gradlew :web-tests:test -Dqa.browser=CHROME -Dqa.env=PROD --tests "com.gmail.doctatyana1.web_auto_tests.tests.AboutUsPageTest"
+./gradlew :web-tests:test -Dqa.browser=FIREFOX -Dqa.env=PROD -Dqa.headless=true --tests "com.gmail.doctatyana1.web_auto_tests.tests.AboutUsPageTest"
 ```
+
+### Continuous Integration (GitHub Actions)
+A GitHub Actions workflow (`.github/workflows/ci.yml`) is configured to run automatically on every `push` and `pull_request` to `master` (as well as manual `workflow_dispatch`). It sets up JDK 21 and Firefox on `ubuntu-latest`, executes `./gradlew test sonarlintMain sonarlintTest -Dqa.browser=FIREFOX -Dqa.env=PROD -Dqa.headless=true`, and uploads the Gradle test reports as build artifacts.
 
 ### YAML Test Data
 Test data is stored under `web-tests/src/test/resources/test-data/` and mapped by environment (`PROD`, `UAT`, `STAGE`, `DEV`) to POJOs in `com.gmail.doctatyana1.web_auto_tests.model`:

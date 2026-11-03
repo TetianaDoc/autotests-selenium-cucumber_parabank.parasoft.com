@@ -90,6 +90,7 @@ subprojects {
         useJUnitPlatform()
         systemProperty "qa.browser", System.getProperty("qa.browser")
         systemProperty "qa.env", System.getProperty("qa.env")
+        systemProperty "qa.headless", System.getProperty("qa.headless")
         testLogging {
             afterSuite { desc, result ->
                 if (!desc.parent) { // will match the outermost suite
