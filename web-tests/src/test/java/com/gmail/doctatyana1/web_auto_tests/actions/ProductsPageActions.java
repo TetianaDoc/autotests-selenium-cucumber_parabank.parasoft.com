@@ -2,8 +2,9 @@ package com.gmail.doctatyana1.web_auto_tests.actions;
 
 import com.gmail.doctatyana1.web_auto_tests.core.WebDriverProvider;
 import com.gmail.doctatyana1.web_auto_tests.pages.ProductsPage;
-import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -36,7 +37,11 @@ public class ProductsPageActions extends BaseLandingPageActions implements PageA
     }
 
     public boolean isCookieConsentDisplayed() {
-        return page.getCookieConsent().isDisplayed();
+        try {
+            return page.getCookieConsent().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public boolean isQuickLinksTitleDisplayed() {
@@ -57,12 +62,13 @@ public class ProductsPageActions extends BaseLandingPageActions implements PageA
 
     public void acceptCookie() {
         page.getCookieConsent().click();
+        page.getWait().until(ExpectedConditions.invisibilityOf(page.getCookieConsent()));
     }
 
     public void changeLanguage(String languageCode) {
-        page.getSelectLanguageMenu().click();
         page.getWait().until(visibilityOf(page.getSelectLanguageMenu()));
-        page.getLanguagesList().stream().filter(e -> e.getText().equals(languageCode))
+        page.getLanguagesList().stream()
+                .filter(e -> e.getText().trim().equals(languageCode))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new)
                 .click();
@@ -70,7 +76,7 @@ public class ProductsPageActions extends BaseLandingPageActions implements PageA
     }
 
     public String getSelectedLanguage() {
-        return page.getSelectedLanguage().getText();
+        return new Select(page.getSelectLanguageMenu()).getFirstSelectedOption().getText().trim();
     }
 
 }

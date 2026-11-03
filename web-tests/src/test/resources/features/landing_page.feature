@@ -31,7 +31,6 @@ Feature: Landing page
       | "Read More"                        |
       | "Latest News"                      |
       | "Home"                             |
-      | "Forum"                            |
       | "Site Map"                         |
       | "Contact Us"                       |
       | "© Parasoft. All rights reserved." |

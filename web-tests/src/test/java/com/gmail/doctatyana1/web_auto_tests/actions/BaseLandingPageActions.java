@@ -158,22 +158,28 @@ public abstract class BaseLandingPageActions extends BasePageActions {
     }
 
     public boolean isLoanRequestProcessedTitleDisplayed() {
+        getPage().getWait().until(ExpectedConditions.visibilityOf(((BaseLandingPage) getPage()).getLoanRequestProceedTitle()));
         return ((BaseLandingPage) getPage()).getLoanRequestProceedTitle().isDisplayed();
-        //return page.getLoanRequestProceedTitle().isDisplayed();
     }
 
     //Actions provided for Update Contact Info
     public void updateProfile(String firstNameUpdated, String lastNameUpdated, String streetUpdated, String cityUpdated, String stateUpdated, String zippCodeUpdated) {
         BaseLandingPage baseLandingPage = ((BaseLandingPage) getPage());
         baseLandingPage.getUpdateContactInfoLink().click();
+        getPage().getWait().until(d -> !baseLandingPage.getFirstNameInput().getAttribute("value").isEmpty());
+        baseLandingPage.getFirstNameInput().clear();
         baseLandingPage.getFirstNameInput().sendKeys(firstNameUpdated);
+        baseLandingPage.getLastNameInput().clear();
         baseLandingPage.getLastNameInput().sendKeys(lastNameUpdated);
+        baseLandingPage.getAddressStreetInput().clear();
         baseLandingPage.getAddressStreetInput().sendKeys(streetUpdated);
+        baseLandingPage.getAddressCityInput().clear();
         baseLandingPage.getAddressCityInput().sendKeys(cityUpdated);
+        baseLandingPage.getAddressStateInput().clear();
         baseLandingPage.getAddressStateInput().sendKeys(stateUpdated);
+        baseLandingPage.getAddressZipCodeInput().clear();
         baseLandingPage.getAddressZipCodeInput().sendKeys(zippCodeUpdated);
-        baseLandingPage.getAddressZipCodeInput().click();
-        baseLandingPage.getFormContact().submit();
+        baseLandingPage.getFormContact().click();
     }
 
     public boolean isProfileUpdatedTitleDisplayed() {

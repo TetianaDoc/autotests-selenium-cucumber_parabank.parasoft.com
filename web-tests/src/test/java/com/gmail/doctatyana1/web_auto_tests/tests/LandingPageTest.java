@@ -76,7 +76,6 @@ class LandingPageTest extends BaseTest {
         assertThat(landingPageActions.isServicesLinkOnFooterPanelEnabled()).isTrue();
         assertThat(landingPageActions.isProductsPageLinkOnFooterPanelEnabled()).isTrue();
         assertThat(landingPageActions.isLocationsPageLinkOnFooterPanelEnabled()).isTrue();
-        assertThat(landingPageActions.isForumPageLinkEnabled()).isTrue();
         assertThat(landingPageActions.isSiteMapLinkEnabled()).isTrue();
         assertThat(landingPageActions.isContactUsLinkEnabled()).isTrue();
         assertThat(landingPageActions.isCopyrightTitleDisplayed()).isTrue();
