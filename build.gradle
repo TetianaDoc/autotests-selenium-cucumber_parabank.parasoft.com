@@ -1,7 +1,7 @@
 // SonarLint
 plugins {
     id("name.remal.sonarlint") version "3.3.3"
-    id("io.freefair.lombok") version "8.1.0" apply false
+    id("io.freefair.lombok") version "8.4" apply false
 }
 
 defaultTasks 'clean', 'build'
@@ -13,14 +13,14 @@ subprojects {
 
     ext {
         versions = [
-                assertj    : '3.24.2',
-                cucumber   : '7.13.0',
-                guava      : '32.1.1-jre',
-                jackson    : '2.15.2',
-                junit      : '5.9.1',
-                junit_suite: '1.9.3',
-                selenium   : '3.141.59',
-                slf4j      : '2.0.7',
+                assertj    : '3.26.3',
+                cucumber   : '7.18.1',
+                guava      : '33.3.0-jre',
+                jackson    : '2.17.2',
+                junit      : '5.11.0',
+                junit_suite: '1.11.0',
+                selenium   : '4.25.0',
+                slf4j      : '2.0.16',
         ]
 
         libs = [:]
@@ -35,7 +35,6 @@ subprojects {
                 "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.jackson}"]
 
         libs.selenium = ["org.seleniumhq.selenium:selenium-java:${versions.selenium}",
-                         "org.seleniumhq.selenium:selenium-server:${versions.selenium}",
                          "org.seleniumhq.selenium:selenium-support:${versions.selenium}"]
 
         libs.selenium_chrome_driver = "org.seleniumhq.selenium:selenium-chrome-driver:${versions.selenium}"
@@ -89,6 +88,8 @@ subprojects {
 
     test {
         useJUnitPlatform()
+        systemProperty "qa.browser", System.getProperty("qa.browser")
+        systemProperty "qa.env", System.getProperty("qa.env")
         testLogging {
             afterSuite { desc, result ->
                 if (!desc.parent) { // will match the outermost suite
