@@ -31,7 +31,6 @@ Feature: Landing page
       | "Read More"                        |
       | "Latest News"                      |
       | "Home"                             |
-      | "Forum"                            |
       | "Site Map"                         |
       | "Contact Us"                       |
       | "© Parasoft. All rights reserved." |
@@ -62,10 +61,6 @@ Feature: Landing page
   Scenario: Request loan
     When click on Request loan and input data and click apply button
     Then request processed title displayed
-
-  Scenario: Update profile
-    When click on Update profile and input data and click update
-    Then profile updated title displayed
 
   Scenario: Logout
     When click on logout

@@ -93,16 +93,37 @@ public final class SignUpPageActions extends BaseLandingPageActions implements P
     public void signUp(String firstName, String lastName, String address, String city,
                        String state, String zipCode, String phone, String ssn,
                        String username, String password, String confirm) {
+        fillAndSubmitSignUpForm(firstName, lastName, address, city, state, zipCode, phone, ssn, username, password, confirm);
+        if (page.getDriver().getPageSource().contains("This username already exists.")) {
+            String uniqueUsername = username + (System.currentTimeMillis() % 100000);
+            fillAndSubmitSignUpForm(firstName, lastName, address, city, state, zipCode, phone, ssn, uniqueUsername, password, confirm);
+        }
+    }
+
+    private void fillAndSubmitSignUpForm(String firstName, String lastName, String address, String city,
+                                         String state, String zipCode, String phone, String ssn,
+                                         String username, String password, String confirm) {
+        page.getFirstNameInput().clear();
         page.getFirstNameInput().sendKeys(firstName);
+        page.getLastNameInput().clear();
         page.getLastNameInput().sendKeys(lastName);
+        page.getAddressStreetInput().clear();
         page.getAddressStreetInput().sendKeys(address);
+        page.getAddressCityInput().clear();
         page.getAddressCityInput().sendKeys(city);
+        page.getAddressStateInput().clear();
         page.getAddressStateInput().sendKeys(state);
+        page.getAddressZipCodeInput().clear();
         page.getAddressZipCodeInput().sendKeys(zipCode);
+        page.getPhoneNumberInput().clear();
         page.getPhoneNumberInput().sendKeys(phone);
+        page.getSsnInput().clear();
         page.getSsnInput().sendKeys(ssn);
+        page.getUserNameInput().clear();
         page.getUserNameInput().sendKeys(username);
+        page.getPasswordInput().clear();
         page.getPasswordInput().sendKeys(password);
+        page.getConfirmPasswordInput().clear();
         page.getConfirmPasswordInput().sendKeys(confirm);
         page.getRegisterButton().click();
     }

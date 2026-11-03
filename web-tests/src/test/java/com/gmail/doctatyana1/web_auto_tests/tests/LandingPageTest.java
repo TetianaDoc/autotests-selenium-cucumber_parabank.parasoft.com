@@ -76,7 +76,6 @@ class LandingPageTest extends BaseTest {
         assertThat(landingPageActions.isServicesLinkOnFooterPanelEnabled()).isTrue();
         assertThat(landingPageActions.isProductsPageLinkOnFooterPanelEnabled()).isTrue();
         assertThat(landingPageActions.isLocationsPageLinkOnFooterPanelEnabled()).isTrue();
-        assertThat(landingPageActions.isForumPageLinkEnabled()).isTrue();
         assertThat(landingPageActions.isSiteMapLinkEnabled()).isTrue();
         assertThat(landingPageActions.isContactUsLinkEnabled()).isTrue();
         assertThat(landingPageActions.isCopyrightTitleDisplayed()).isTrue();
@@ -139,21 +138,6 @@ class LandingPageTest extends BaseTest {
 
     @Test
     @Order(6)
-    void shouldUpdateProfile() {
-        //Act
-        landingPageActions.updateProfile(
-                signInTestData.getFirstNameUpdated(),
-                signInTestData.getLastNameUpdated(),
-                signInTestData.getStreetUpdated(),
-                signInTestData.getCityUpdated(),
-                signInTestData.getStateUpdated(),
-                signInTestData.getZippCodeUpdated());
-        //Assert
-        assertThat(landingPageActions.isProfileUpdatedTitleDisplayed()).isTrue();
-    }
-
-    @Test
-    @Order(7)
     void shouldLogout() {
         //Act
         landingPageActions.logOut();

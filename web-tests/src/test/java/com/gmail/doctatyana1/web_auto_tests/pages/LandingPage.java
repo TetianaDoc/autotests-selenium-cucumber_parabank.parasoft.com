@@ -86,7 +86,7 @@ public final class LandingPage extends BaseLandingPage {
 
     //Elements appeared after successful login
 
-    @FindBy(xpath = "//h1[text()='Accounts Overview']")
+    @FindBy(xpath = "//h1[normalize-space()='Accounts Overview']")
     private WebElement accountsOverviewTitle;
 
 }

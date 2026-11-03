@@ -42,7 +42,7 @@ public abstract class BaseLandingPage extends BasePage {
 
     //Elements of .button on #headerPanel
 
-    @FindBy(css = ".home a[href*='/parabank/index.htm;']")
+    @FindBy(css = ".home a[href*='index.htm']")
     private WebElement homeButton;
 
     @FindBy(css = ".button>li a[href*=\"about.htm\"]")
@@ -90,7 +90,7 @@ public abstract class BaseLandingPage extends BasePage {
 
 //Elements on #footermainPanel
 
-    @FindBy(css = "#footerPanel a[href*=\"/parabank/index.htm\"]")
+    @FindBy(css = "#footerPanel a[href*=\"index.htm\"]")
     private WebElement homeLinkOnFooterPanel;
 
     @FindBy(css = "#footerPanel a[href*=\"about.htm\"]")
@@ -108,7 +108,7 @@ public abstract class BaseLandingPage extends BasePage {
     @FindBy(css = "#footerPanel a[href=\"http://forums.parasoft.com/\"]")
     private WebElement forumPageLink;
 
-    @FindBy(css = "#footerPanel a[href*=\"/parabank/sitemap.htm\"]")
+    @FindBy(css = "#footerPanel a[href*=\"sitemap.htm\"]")
     private WebElement siteMapLink;
 
     @FindBy(css = "#footerPanel a[href*=\"contact.htm\"]")
@@ -167,7 +167,7 @@ public abstract class BaseLandingPage extends BasePage {
     @FindBy(id = "customer.phoneNumber")
     private WebElement phoneNumberInput;
 
-    @FindBy(css = "form[name='contact']")
+    @FindBy(css = "input.button[value='Update Profile']")
     private WebElement formContact;
 
     @FindBy(xpath = "//h1[text()='Profile Updated']")

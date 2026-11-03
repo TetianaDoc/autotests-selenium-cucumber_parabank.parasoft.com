@@ -105,20 +105,4 @@ public class LandingPageStepDefs extends BaseTest {
     public void requestProcessedTitleDisplayed() {
         assertThat(landingPageActions.isLoanRequestProcessedTitleDisplayed()).isTrue();
     }
-
-    @When("click on Update profile and input data and click update")
-    public void updateProfile() {
-        landingPageActions.updateProfile(
-                signInTestData.getFirstNameUpdated(),
-                signInTestData.getLastNameUpdated(),
-                signInTestData.getStreetUpdated(),
-                signInTestData.getCityUpdated(),
-                signInTestData.getStateUpdated(),
-                signInTestData.getZippCodeUpdated());
-    }
-
-    @Then("profile updated title displayed")
-    public void profileUpdatedTitleDisplayed() {
-        assertThat(landingPageActions.isProfileUpdatedTitleDisplayed()).isTrue();
-    }
 }

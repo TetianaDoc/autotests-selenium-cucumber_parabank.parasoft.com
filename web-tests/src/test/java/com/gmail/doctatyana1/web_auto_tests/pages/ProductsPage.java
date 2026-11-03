@@ -29,16 +29,16 @@ public class ProductsPage extends BaseLandingPage {
         return productsPageTitle.isDisplayed();
     }
 
-    @FindBy(xpath = "//div/h1[text()='Innovative and Intelligent Software Testing Platform']")
+    @FindBy(xpath = "//div/h1[text()='Find the Testing Solution That Fits Your Team Perfectly']")
     private WebElement productsPageTitle;
 
-    @FindBy(css = "a[id=\"hs-eu-confirmation-button\"]")
+    @FindBy(css = "button.cky-btn-accept")
     private WebElement cookieConsent;
 
-    @FindBy(xpath = "//p[@class=\"h6\" and text()='Quick links']")
+    @FindBy(xpath = "//*[not(self::script) and (contains(text(),'QUICK LINKS') or contains(text(),'Quick links'))]")
     private WebElement quickLinksTitle;
 
-    @FindBy(xpath = "//p[@class='h6' and text()='PARASOFT HEADQUARTERS']")
+    @FindBy(xpath = "//*[not(self::script) and contains(text(),'PARASOFT HEADQUARTERS')]")
     private WebElement headquartersTitle;
 
     @FindBy(css="select[aria-label='Select Language']")
@@ -47,7 +47,7 @@ public class ProductsPage extends BaseLandingPage {
     @FindBy(css=".gt_selector option[selected]")
     private WebElement selectedLanguage;
 
-    @FindBy(css = "  option[value]")
+    @FindBy(css = "select[aria-label='Select Language'] option[value]")
     private List<WebElement> languagesList;
 
 }
